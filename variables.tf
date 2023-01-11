@@ -55,10 +55,11 @@ variable "check_expected_body" {
 }
 
 variable "hosts" {
-  description = "List of hosts to add"
+  description = "Map of DCs with map of hostnames and their IPs."
   type        = map(map(string))
 }
 
+/* FIXME: This is not pretty, but it works. */
 variable "region_map" {
   description = "Map of pool DCs to regions."
   type        = map(string)
