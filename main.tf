@@ -1,5 +1,7 @@
 /* https://support.cloudflare.com/hc/en-us/requests/1543877 */
 resource "cloudflare_load_balancer_monitor" "health" {
+  account_id = var.account_id
+
   description    = "${var.check_path} check"
   method         = var.check_method
   type           = var.check_type
@@ -16,6 +18,8 @@ resource "cloudflare_load_balancer_monitor" "health" {
 
 /* https://github.com/terraform-providers/terraform-provider-cloudflare/issues/54 */
 resource "cloudflare_load_balancer_pool" "main" {
+  account_id = var.account_id
+
   for_each = var.hosts
 
   name        = "${each.key}.${var.name}.${var.domain}"
