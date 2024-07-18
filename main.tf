@@ -20,7 +20,11 @@ resource "cloudflare_load_balancer_monitor" "health" {
 resource "cloudflare_load_balancer_pool" "main" {
   account_id = var.account_id
 
-  for_each = var.hosts
+  /* Allow not specifying hosts for all regions. */
+  for_each = {
+    for key, val in var.hosts:
+      key => val if val != null
+  }
 
   name        = "${each.key}.${var.name}.${var.domain}"
   description = "${each.key}"
