@@ -30,6 +30,12 @@ variable "check_method" {
   default     = "GET"
 }
 
+variable "check_interval" {
+  description = "The interval between each health check."
+  type        = number
+  default     = 120
+}
+
 variable "check_type" {
   description = "Type of endpoint healthcheck"
   type        = string

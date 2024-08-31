@@ -8,7 +8,7 @@ resource "cloudflare_load_balancer_monitor" "health" {
   path           = var.check_path
   expected_codes = var.check_expected_codes
   expected_body  = var.check_expected_body
-  interval       = 60
+  interval       = var.check_interval
   retries        = 5
   timeout        = 7
 
